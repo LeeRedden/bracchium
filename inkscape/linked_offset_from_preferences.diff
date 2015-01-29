@@ -1,0 +1,17 @@
+--- src/splivarot.cpp	2010-04-10 15:21:01 +0000
++++ src/splivarot.cpp	2010-08-12 05:13:33 +0000
+@@ -1440,12 +1440,7 @@
+         Inkscape::XML::Document *xml_doc = sp_document_repr_doc(desktop->doc());
+         repr = xml_doc->createElement("svg:path");
+         repr->setAttribute("sodipodi:type", "inkscape:offset");
+-        sp_repr_set_svg_double(repr, "inkscape:radius", ( expand > 0
+-                                                          ? o_width
+-                                                          : expand < 0
+-                                                          ? -o_width
+-                                                          : 0 ));
+-
++        sp_repr_set_svg_double(repr, "inkscape:radius", (expand >= 0 ? o_width : -o_width));
+         str = res->svg_dump_path();
+         repr->setAttribute("inkscape:original", str);
+         g_free(str);
+
