@@ -12,7 +12,7 @@ struct fingerCalibration
     int servo;
 };
 
-enum finger { ThumbFinger = 0, ThumbPivot , Pointer , Middle , Ring , Pinky , TopWrist , BottomWrist };
+enum finger { BottomWrist = 0, TopWrist, Pinky, Ring, Middle, Pointer, ThumbPivot, ThumbFinger };
 
 fingerCalibration returnCalibration( finger finger_)
 {
@@ -20,7 +20,7 @@ fingerCalibration returnCalibration( finger finger_)
     switch( finger_ ) {
     case ThumbFinger:
         calib.min = 30;
-        calib.center = 70;
+        calib.center = 38;
         calib.max = 90;
         calib.servo = 1;
         return calib;
@@ -31,20 +31,20 @@ fingerCalibration returnCalibration( finger finger_)
         calib.servo = 2;
         return calib;
     case Pointer:
-        calib.min = 40;
-        calib.center = 95;
+        calib.min = 20;
+        calib.center = 83;
         calib.max = 105;
         calib.servo = 5;
         return calib;
     case Middle:
         calib.min = 70;
-        calib.center = 100;
+        calib.center = 83;
         calib.max = 190;
         calib.servo = 0;
         return calib;
     case Ring:
         calib.min = 30;
-        calib.center = 60;
+        calib.center = 44;
         calib.max = 135;
         calib.servo = 6;
         return calib;
@@ -75,10 +75,10 @@ CMakeQt::CMakeQt(QWidget *parent)
     m_ui.setupUi(this);
     m_ui.label->setText( "Hand Movement GUI for Roy the Robot, by Lee Redden" );
 
-    // close button
+    // close, pause, resume button
     connect( m_ui.closeButton, SIGNAL(pressed()), this, SLOT(closeButton()) );
     connect( m_ui.pauseButton, SIGNAL(pressed()), this, SLOT(pauseButton()) );
-    connect( m_ui.resumeButton, SIGNAL(pressed()), this, SIGNAL(resumeButton()) );
+    connect( m_ui.resumeButton, SIGNAL(pressed()), this, SLOT(resumeButton()) );
 
     // populate sliders
     _sliders.push_back( m_ui.horizontalSlider0 );
@@ -101,14 +101,14 @@ CMakeQt::CMakeQt(QWidget *parent)
     _commanded.push_back( m_ui.lcd7_0 );
 
     // populate lcd for run
-    _run.push_back( m_ui.lcd0_1 );
-    _run.push_back( m_ui.lcd1_1 );
-    _run.push_back( m_ui.lcd2_1 );
-    _run.push_back( m_ui.lcd3_1 );
-    _run.push_back( m_ui.lcd4_1 );
-    _run.push_back( m_ui.lcd5_1 );
-    _run.push_back( m_ui.lcd6_1 );
-    _run.push_back( m_ui.lcd7_1 );
+    _current.push_back( m_ui.lcd0_1 );
+    _current.push_back( m_ui.lcd1_1 );
+    _current.push_back( m_ui.lcd2_1 );
+    _current.push_back( m_ui.lcd3_1 );
+    _current.push_back( m_ui.lcd4_1 );
+    _current.push_back( m_ui.lcd5_1 );
+    _current.push_back( m_ui.lcd6_1 );
+    _current.push_back( m_ui.lcd7_1 );
 
     // horizontal slider
     for( int ii = 0; ii < _sd.getNumberOfServos(); ++ii )
@@ -122,39 +122,13 @@ CMakeQt::CMakeQt(QWidget *parent)
         // center the cursor
         _sliders[ii]->setSliderPosition(cal.center);
         _sd.SetServo(cal.servo,cal.center);
+        _commanded[ii]->display(cal.center);
 
         // set connection
         connect( _sliders[ii], SIGNAL(sliderMoved(int)), this, SLOT(sliderMoved()) );
     }
 
-    //    // initialize servos
-    //    _sd.SetServo(0,100.0);  // middle finger
-    //    _sd.SetServoRange(0,70,190);
-
-    //    _sd.SetServo(1,70.0); // thumb finger
-    //    _sd.SetServoRange(1,30,90);
-
-    //    _sd.SetServo(2,100.0); // thumb pivot
-    //    _sd.SetServoRange(2,75,174);
-
-    //    _sd.SetServo(3,114.0); // top wrist
-    //    _sd.SetServoRange(3,60,150);
-
-    //    _sd.SetServo(4,102.0); // bottom wrist
-    //    _sd.SetServoRange(4,50,140);
-
-    //    _sd.SetServo(5,95.0); // pointer finger
-    //    _sd.SetServoRange(5,40,105);
-
-    //    _sd.SetServo(6,60.0); // ring finger
-    //    _sd.SetServoRange(6,30,135);
-
-    //    _sd.SetServo(7,110.0); // pinky finger
-    //    _sd.SetServoRange(7,105,200);
-
-    //_sd.EngageAll();
-    _sd.EngageIndividual(3,1);
-    _sd.EngageIndividual(4,1);
+    _sd.EngageAll();
 }
 
 void CMakeQt::sliderMoved()
@@ -164,8 +138,9 @@ void CMakeQt::sliderMoved()
         fingerCalibration cal = returnCalibration( static_cast<finger>(ii) );
 
         _sd.SetServo( cal.servo, _sliders[ii]->value() );
+
         _commanded[ii]->display( _sliders[ii]->value() );
-        _run[ii]->display( _sd.GetPosition(cal.servo) );
+        _current[ii]->display( _sd.GetCurrent(cal.servo) );
     }
 }
 

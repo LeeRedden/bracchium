@@ -20,7 +20,7 @@ private:
     ServoDriver _sd;
     std::vector< QSlider* > _sliders;
     std::vector< QLCDNumber* > _commanded;
-    std::vector< QLCDNumber* > _run;
+    std::vector< QLCDNumber* > _current;
 
 private slots:
     void sliderMoved();
