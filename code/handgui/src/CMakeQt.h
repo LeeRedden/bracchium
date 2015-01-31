@@ -2,8 +2,11 @@
 #define CMAKEQT_H
 
 #include "ui_CMakeQt.h"
-#include <QtGui>
 #include "servoDriver.hpp"
+
+#include <QtGui>
+#include <QSlider>
+#include <QLCDNumber>
 
 class CMakeQt : public QDialog
 {
@@ -14,13 +17,17 @@ public:
 
 private:
     Ui::CMakeQt m_ui;
-    int sumSoFar;
-
     ServoDriver _sd;
+    std::vector< QSlider* > _sliders;
+    std::vector< QLCDNumber* > _commanded;
+    std::vector< QLCDNumber* > _run;
 
 private slots:
     void sliderMoved();
-    void dialMoved();
+    void closeButton();
+    void pauseButton();
+    void resumeButton();
+
 };
 
 #endif // CMAKEQT_H

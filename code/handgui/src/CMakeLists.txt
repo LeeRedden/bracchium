@@ -31,10 +31,14 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 SET(CMAKEQT_SRCS
     main.cpp
     CMakeQt.cpp
+    servoDriver.cpp
+    phidgetUtilities.cpp
 )
 
 SET(CMAKEQT_HDRS
     CMakeQt.h
+    servoDriver.hpp
+    phidgetUtilities.hpp
 )
 
 #Put here QRC files to be Rcc-ed

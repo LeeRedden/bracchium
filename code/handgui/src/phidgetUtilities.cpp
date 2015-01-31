@@ -1,8 +1,6 @@
 
 #include "phidgetUtilities.hpp"
 
-namespace HAND{
-namespace SERVO{
 
 int CCONV AttachHandler(CPhidgetHandle ADVSERVO, void *userptr)
 {
@@ -57,7 +55,3 @@ int display_properties(CPhidgetAdvancedServoHandle phid)
 
     return 0;
 }
-
-} // end SERVO
-} // end HAND
-

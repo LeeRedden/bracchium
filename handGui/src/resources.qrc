@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/" >
-        <file>albumart.svg</file>
-        <file>lock.svg</file>
-    </qresource>
-</RCC>
