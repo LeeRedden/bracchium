@@ -14,48 +14,48 @@
    <string>CMakeQt</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="12" column="1">
+   <item row="13" column="1">
     <widget class="QSlider" name="horizontalSlider2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="11" column="1">
+   <item row="12" column="1">
     <widget class="QSlider" name="horizontalSlider3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="10" column="1">
+   <item row="11" column="1">
     <widget class="QSlider" name="horizontalSlider4">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="14" column="2">
+   <item row="15" column="2">
     <widget class="QLCDNumber" name="lcd0_0"/>
    </item>
-   <item row="9" column="1">
+   <item row="10" column="1">
     <widget class="QSlider" name="horizontalSlider5">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="13" column="2">
+   <item row="14" column="2">
     <widget class="QLCDNumber" name="lcd1_0"/>
    </item>
-   <item row="7" column="1">
+   <item row="8" column="1">
     <widget class="QSlider" name="horizontalSlider7">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="13" column="1">
+   <item row="14" column="1">
     <widget class="QSlider" name="horizontalSlider1">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -69,101 +69,101 @@
      </property>
     </widget>
    </item>
-   <item row="14" column="1">
+   <item row="15" column="1">
     <widget class="QSlider" name="horizontalSlider0">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="14" column="3">
+   <item row="15" column="3">
     <widget class="QLCDNumber" name="lcd0_1"/>
    </item>
-   <item row="8" column="1">
+   <item row="9" column="1">
     <widget class="QSlider" name="horizontalSlider6">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="11" column="3">
+   <item row="12" column="3">
     <widget class="QLCDNumber" name="lcd3_1"/>
    </item>
-   <item row="13" column="3">
+   <item row="14" column="3">
     <widget class="QLCDNumber" name="lcd1_1"/>
    </item>
    <item row="12" column="2">
+    <widget class="QLCDNumber" name="lcd3_0"/>
+   </item>
+   <item row="13" column="2">
     <widget class="QLCDNumber" name="lcd2_0"/>
    </item>
-   <item row="12" column="3">
+   <item row="13" column="3">
     <widget class="QLCDNumber" name="lcd2_1"/>
    </item>
    <item row="11" column="2">
-    <widget class="QLCDNumber" name="lcd3_0"/>
-   </item>
-   <item row="10" column="2">
     <widget class="QLCDNumber" name="lcd4_0"/>
    </item>
-   <item row="10" column="3">
+   <item row="11" column="3">
     <widget class="QLCDNumber" name="lcd4_1"/>
    </item>
-   <item row="9" column="2">
+   <item row="10" column="2">
     <widget class="QLCDNumber" name="lcd5_0"/>
    </item>
-   <item row="9" column="3">
+   <item row="10" column="3">
     <widget class="QLCDNumber" name="lcd5_1"/>
    </item>
-   <item row="8" column="2">
+   <item row="9" column="2">
     <widget class="QLCDNumber" name="lcd6_0"/>
    </item>
-   <item row="8" column="3">
+   <item row="9" column="3">
     <widget class="QLCDNumber" name="lcd6_1"/>
    </item>
-   <item row="7" column="2">
+   <item row="8" column="2">
     <widget class="QLCDNumber" name="lcd7_0"/>
    </item>
-   <item row="7" column="3">
+   <item row="8" column="3">
     <widget class="QLCDNumber" name="lcd7_1"/>
    </item>
-   <item row="6" column="1">
-    <widget class="QPushButton" name="motionButton">
-     <property name="text">
-      <string>MOTION</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
+   <item row="4" column="1">
     <widget class="QPushButton" name="pauseButton">
      <property name="text">
       <string>PAUSE</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="3" column="1">
     <widget class="QPushButton" name="resumeButton">
      <property name="text">
       <string>RESUME</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
+   <item row="4" column="2">
     <widget class="QPushButton" name="rockoutButton">
      <property name="text">
       <string>Rock-Out</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="2">
+   <item row="3" column="3">
     <widget class="QPushButton" name="hangtenButton">
      <property name="text">
       <string>HangTen</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="2">
+   <item row="4" column="3">
     <widget class="QPushButton" name="theBirdButton">
      <property name="text">
       <string>The Bird</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="motionButton">
+     <property name="text">
+      <string>MOTION</string>
      </property>
     </widget>
    </item>
