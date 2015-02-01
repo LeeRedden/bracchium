@@ -1,0 +1,16 @@
+<inkscape-extension>
+    <_name>Combine touching subpaths...</_name>
+    <id>org.ekips.filter.combine_touching</id>
+	<dependency type="executable" location="extensions">combine_touching.py</dependency>
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+	<param name="together" type="boolean" _gui-text="Keep subpaths together">true</param>
+    <effect>
+		<object-type>path</object-type>
+                <effects-menu>
+                    <submenu _name="Generate from Path"/>
+                </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">combine_touching.py</command>
+    </script>
+</inkscape-extension>

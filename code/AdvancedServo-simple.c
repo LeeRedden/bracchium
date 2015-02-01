@@ -127,7 +127,7 @@ int servo_simple()
 	printf("Move to position 40.00 and engage. Press any key to Continue\n");
 	getchar();
 
-	CPhidgetAdvancedServo_setPosition (servo, 0, 40.00);
+	CPhidgetAdvancedServo_setPosition(servo, 0, 40.00);
 	CPhidgetAdvancedServo_setEngaged(servo, 0, 1);
 
 	//Step 2: Position 50.00
