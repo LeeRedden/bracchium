@@ -14,6 +14,14 @@ RoyDriver::RoyDriver()
     this->EngageAll();
 }
 
+void RoyDriver::SetFingerPositions( double positions_[8] )
+{
+    for( int ii = 0; ii < 8; ++ii )
+    {
+        this->SetFingerPosition( static_cast<finger>(ii), positions_[ii] );
+    }
+}
+
 void RoyDriver::SetFingerPosition( finger finger_, double position_)
 {
     fingerCalibration cal = returnCalibration( finger_ );

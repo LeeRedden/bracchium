@@ -3,45 +3,72 @@
 
 #include "string"
 #include "royCalibration.hpp"
+#include <math.h>       /* sin */
 
 // This class will house the joint positions for different hand positions. Unclear how the will currently be executed
-struct position
+
+#define PI 3.14159265
+
+struct pose
 {
-    int positions[8];
+    double millisecond;
+    double positions[8];
 };
 
-position* returnPosition( std::string positionName_ )
+std::vector<pose> returnPosition( std::string positionName_ )
 {
-    //if( positionName_ == "bird")
+    std::vector<pose> poses;
+    if( positionName_ == "bird" )
     {
-        position* bird = (new position);
-
-        fingerCalibration calib = returnCalibration( ThumbFinger );
-        bird->positions[static_cast<int>(ThumbFinger)] = calib.center;
-
-        calib = returnCalibration( ThumbPivot );
-        bird->positions[static_cast<int>(ThumbPivot)] = calib.center;
-
-        calib = returnCalibration( Pointer );
-        bird->positions[static_cast<int>(Pointer)] = calib.center;
-
-        calib = returnCalibration( Middle );
-        bird->positions[static_cast<int>(Middle)] = calib.center;
-
-        calib = returnCalibration( Ring );
-        bird->positions[static_cast<int>(Ring)] = calib.max;
-
-        calib = returnCalibration( Pinky );
-        bird->positions[static_cast<int>(Pinky)] = calib.center;
-
-        calib = returnCalibration( TopWrist );
-        bird->positions[static_cast<int>(TopWrist)] = calib.center;
-
-        calib = returnCalibration( BottomWrist );
-        bird->positions[static_cast<int>(BottomWrist)] = calib.center;
-
-        return bird;
+        //                     0           1       2      3     4        5         6            7
+        //  enum finger { BottomWrist, TopWrist, Pinky, Ring, Middle, Pointer, ThumbPivot, ThumbFinger };
+        //                         0,    1,   2,   3,   4,   5,    6,    7
+        poses.push_back( { 100, {  0,    0,   1,   1,  -1,   1,    0,  0.25} } );
+}
+else if( positionName_ == "rock" )
+{
+    //                         0,    1,   2,   3,   4,   5,    6,    7
+    for( int ii = 0; ii < 720; ii = ii + 7 )
+    {
+        poses.push_back( { 3, { 0.5*sin(ii*PI/180), 0.5*sin(ii*PI/180),  -1,   1,   1,   -1,   -1,   -1} } );
     }
+
+//    poses.push_back( { 300, {  0,    0,  -1,   1,   1,  -1,   -1,   -1} } );
+}
+else if( positionName_ == "hang10")
+{
+//                         0,    1,   2,   3,   4,   5,    6,    7
+for( int ii = 0; ii < 720; ii = ii + 7 )
+{
+    poses.push_back( { 3, { 0.5*sin(ii*PI/180), -0.5*sin(ii*PI/180),  -1,   1,   1,   1,   -1,   -1} } );
+}
+
+}
+else if( positionName_ == "motion")
+{
+//                         0,    1,   2,   3,   4,   5,    6,    7
+    for( int ii = 0; ii < 720; ii = ii + 7 )
+    {
+        poses.push_back( { 3, { 0.5*sin(ii*PI/180), 0.5*cos(ii*PI/180),  1,   1,   1,   1,   -1,   -1} } );
+    }
+    for( int ii = 0; ii < 720; ii = ii + 7 )
+    {
+        poses.push_back( { 3, { 0, 0, sin(ii*PI/180), sin((30+ii)*PI/180),sin((60+ii)*PI/180),sin((90+ii)*PI/180),  sin((270+ii)*PI/180), sin((270+ii)*PI/180) } } );
+    }
+    for( int ii = 0; ii < 1080; ii = ii + 7 )
+    {
+       poses.push_back( { 3, { 0.5*sin(ii*PI/180), 0.5*cos(ii*PI/180), sin(ii*PI/180), sin((30+ii)*PI/180),sin((60+ii)*PI/180),sin((90+ii)*PI/180),  sin((270+ii)*PI/180), sin((270+ii)*PI/180) } } );
+    }
+
+    poses.push_back({ 100, {  0,    0,   0,   0,  0,   0,    0,  0} });
+}
+else
+{
+pose newPose = { 100, {  0,    0,   0,   0,  0,   0,    0,  0} };
+poses.push_back({ 100, {  0,    0,   0,   0,  0,   0,    0,  0} });
+}
+
+return poses;
 }
 
 

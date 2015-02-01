@@ -17,6 +17,8 @@ CMakeQt::CMakeQt(QWidget *parent)
     connect( m_ui.motionButton, SIGNAL(pressed()), this, SLOT(motionButton()) );
     connect( m_ui.pauseButton, SIGNAL(pressed()), this, SLOT(pauseButton()) );
     connect( m_ui.resumeButton, SIGNAL(pressed()), this, SLOT(resumeButton()) );
+    connect( m_ui.rockoutButton, SIGNAL(pressed()), this, SLOT(rockoutButton()) );
+    connect( m_ui.hangtenButton, SIGNAL(pressed()), this, SLOT(hangtenButton()) );
 
     // populate sliders
     _sliders.push_back( m_ui.horizontalSlider0 );
@@ -53,10 +55,10 @@ CMakeQt::CMakeQt(QWidget *parent)
     // horizontal slider
     for( int ii = 0; ii < _rd->getNumberOfServos(); ++ii )
     {
-        _sliders[ii]->setRange(0,1000);
+        _sliders[ii]->setRange(-1000,1000);
         // center the cursor
-        _sliders[ii]->setSliderPosition(500);
-        _commanded[ii]->display(0.5);
+        _sliders[ii]->setSliderPosition(0);
+        _commanded[ii]->display(0);
         // set connection
         connect( _sliders[ii], SIGNAL(sliderMoved(int)), this, SLOT(sliderMoved()) );
     }
@@ -67,18 +69,36 @@ void CMakeQt::sliderMoved()
     for( int ii = 0; ii < _rd->getNumberOfServos(); ++ii )
     {
         _rd->SetFingerPosition( static_cast<finger>(ii), (double)_sliders[ii]->value()/1000 );
-        _commanded[ii]->display( _sliders[ii]->value()/1000 );
+        _commanded[ii]->display( (double)_sliders[ii]->value()/1000 );
         _current[ii]->display( _rd->GetCurrentFinger( static_cast<finger>(ii) ) );
     }
 }
 
+void CMakeQt::hangtenButton() {
+    std::vector<pose> poses = returnPosition( "hang10" );
+    for( int ii = 0; ii < poses.size(); ++ii )
+    {
+        _rd->SetFingerPositions( poses[ii].positions );
+        usleep( poses[ii].millisecond*1000 );
+    }
+}
+
+void CMakeQt::rockoutButton() {
+    std::vector<pose> poses = returnPosition( "rock" );
+    for( int ii = 0; ii < poses.size(); ++ii )
+    {
+        _rd->SetFingerPositions( poses[ii].positions );
+        usleep( poses[ii].millisecond*1000 );
+    }
+}
+
 void CMakeQt::motionButton() {
-//    position* pos = returnPosition( "bird" );
-//    for( int ii = 0; ii < _rd->getNumberOfServos(); ++ii )
-//    {
-//        _rd->SetPosition( ii, pos->positions[ii] );
-//        _commanded[ii]->display( _sliders[ii]->value() );
-//    }
+    std::vector<pose> poses = returnPosition( "motion" );
+    for( int ii = 0; ii < poses.size(); ++ii )
+    {
+        _rd->SetFingerPositions( poses[ii].positions );
+        usleep( poses[ii].millisecond*1000 );
+    }
 }
 
 void CMakeQt::pauseButton(){

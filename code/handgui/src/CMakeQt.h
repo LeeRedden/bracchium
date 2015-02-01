@@ -29,6 +29,8 @@ private slots:
     void motionButton();
     void pauseButton();
     void resumeButton();
+    void rockoutButton();
+    void hangtenButton();
 
 };
 

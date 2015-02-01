@@ -11,6 +11,7 @@ class RoyDriver: public ServoDriver
 public:
     RoyDriver();
 
+    void SetFingerPositions( double positions_[8] );
     void SetFingerPosition( finger finger_, double position_ );
     double GetCurrentFinger( finger finger_ );
 //    void close();

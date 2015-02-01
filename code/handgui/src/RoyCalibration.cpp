@@ -36,14 +36,14 @@ fingerCalibration returnCalibration( finger finger_ )
         return calib;
     case Ring:
         calib.min = 30;
-        calib.center = 44;
+        calib.center = 49;
         calib.max = 135;
         calib.servo = 6;
         calib.direction = false;
         return calib;
     case Pinky:
         calib.min = 105;
-        calib.center = 110;
+        calib.center = 125;
         calib.max = 200;
         calib.servo = 7;
         calib.direction = false;
@@ -70,19 +70,19 @@ fingerCalibration returnCalibration( finger finger_ )
 
 int returnFingerMapping( finger finger_, double position_ ) // position ranges from 0->1
 {
-    if( position_ > 1 || position_ < 0 )
+    if( position_ > 1 || position_ < -1 )
     {
         throw std::invalid_argument( "position value is out of bounds in returnFingerMapping" );
     }
 
     fingerCalibration fc = returnCalibration( finger_ );
-    if(  (position_ >= 0.5 && fc.direction) || //value is between center and max
-         (position_ <= 0.5 && !fc.direction) )
+    if(  (position_ >= 0 && !fc.direction) || //value is between center and max
+         (position_ <= 0 && fc.direction) )
     {
-        return (fc.max - fc.center)*fabs(position_-0.5) + fc.center;
+        return (fc.max - fc.center)*fabs(position_) + fc.center;
     }
     else
     {
-        return (fc.min - fc.center)*fabs(position_-0.5) + fc.center;
+        return (fc.min - fc.center)*fabs(position_) + fc.center;
     }
 }
