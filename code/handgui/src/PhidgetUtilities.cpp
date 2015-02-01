@@ -1,6 +1,20 @@
+//-*- c++ -*-------------------------------------------------------------------
+#ifdef __GNUC__
+#pragma implementation "PhidgetUtilities.hpp"
+#endif
+//
+// Class: PhidgetUtilities
+// Author: Lee Redden
+// Email: leeredden@gmail.com
+// Created: 31 Jan 2015
+// Modifications:
+// 20150131 LeeR Initial Version
+//
+//-----------------------------------------------------------------------------
 
 #include "PhidgetUtilities.hpp"
 
+namespace PhidgetUtilities {
 
 int CCONV AttachHandler(CPhidgetHandle ADVSERVO, void *userptr)
 {
@@ -54,4 +68,6 @@ int display_properties(CPhidgetAdvancedServoHandle phid)
     printf("Serial Number: %10d\nVersion: %8d\n# Motors: %d\n", serialNo, version, numMotors);
 
     return 0;
+}
+
 }

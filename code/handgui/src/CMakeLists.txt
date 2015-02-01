@@ -43,7 +43,7 @@ SET(CMAKEQT_HDRS
     PhidgetUtilities.hpp
     RoyCalibration.hpp
     RoyDriver.hpp
-    JointPositions.hpp
+    MotionPaths.hpp
 )
 
 #Put here QRC files to be Rcc-ed
@@ -69,7 +69,9 @@ QT4_WRAP_UI(CMAKEQT_UIS_H ${CMAKEQT_UIS})
 QT4_ADD_RESOURCES(CMAKEQT_RCC_SRCS ${CMAKEQT_RCC})
 QT4_WRAP_CPP(CMAKEQT_MOC_SRCS ${CMAKEQT_HDRS})
 
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=gnu++0x")
 
+set_source_files_properties(main.cpp PROPERTIES COMPILE_FLAGS -std=gnu++0x)
 ADD_EXECUTABLE(cmakeqt ${CMAKEQT_SRCS} ${CMAKEQT_MOC_SRCS} ${CMAKEQT_UIS_H} ${CMAKEQT_RCC_SRCS} ${QT_INCLUDE_DIRS} ${CMAKEQT_HDRS} )
 TARGET_LINK_LIBRARIES(cmakeqt ${CMAKEQT_LIBS} phidget21 )
 

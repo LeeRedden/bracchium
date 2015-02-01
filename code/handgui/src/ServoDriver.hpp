@@ -1,6 +1,19 @@
+//-*- c++ -*-------------------------------------------------------------------
 #ifndef SERVODRIVER_HPP
 #define SERVODRIVER_HPP
 
+#ifdef __GNUC__
+#pragma implementation
+#endif
+//
+// Class: ServoDriver
+// Author: Lee Redden
+// Email: leeredden@gmail.com
+// Created: 31 Jan 2015
+// Modifications:
+// 20150131 LeeR Initial Version
+//
+//-----------------------------------------------------------------------------
 
 #include <stdio.h>
 #include <phidget21.h>

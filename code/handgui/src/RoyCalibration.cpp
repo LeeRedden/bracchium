@@ -1,3 +1,17 @@
+//-*- c++ -*-------------------------------------------------------------------
+#ifdef __GNUC__
+#pragma implementation "RoyCalibration.hpp"
+#endif
+//
+// Class: RoyCalibration
+// Author: Lee Redden
+// Email: leeredden@gmail.com
+// Created: 31 Jan 2015
+// Modifications:
+// 20150131 LeeR Initial Version
+//
+//-----------------------------------------------------------------------------
+
 #include "RoyCalibration.hpp"
 #include <math.h>     /* abs */
 #include <iostream>
@@ -65,10 +79,9 @@ fingerCalibration returnCalibration( finger finger_ )
     default:
         throw std::invalid_argument( "not a finger type in fingerCalibration" );
     }
-};
+}
 
-
-int returnFingerMapping( finger finger_, double position_ ) // position ranges from 0->1
+int returnFingerMapping( finger finger_, double position_ ) // position ranges from -1 -> 1
 {
     if( position_ > 1 || position_ < -1 )
     {

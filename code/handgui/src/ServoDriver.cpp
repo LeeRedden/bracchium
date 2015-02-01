@@ -1,3 +1,16 @@
+//-*- c++ -*-------------------------------------------------------------------
+#ifdef __GNUC__
+#pragma implementation "ServoDriver.hpp"
+#endif
+//
+// Class: ServoDriver
+// Author: Lee Redden
+// Email: leeredden@gmail.com
+// Created: 31 Jan 2015
+// Modifications:
+// 20150131 LeeR Initial Version
+//
+//-----------------------------------------------------------------------------
 
 #include <iostream>
 #include "ServoDriver.hpp"
@@ -18,13 +31,13 @@ ServoDriver::ServoDriver()
     CPhidgetAdvancedServo_create(&_servo);
 
     //Set the handlers to be run when the device is plugged in or opened from software, unplugged or closed from software, or generates an error.
-    CPhidget_set_OnAttach_Handler((CPhidgetHandle)_servo, AttachHandler, NULL);
-    CPhidget_set_OnDetach_Handler((CPhidgetHandle)_servo, DetachHandler, NULL);
-    CPhidget_set_OnError_Handler((CPhidgetHandle)_servo, ErrorHandler, NULL);
+    CPhidget_set_OnAttach_Handler((CPhidgetHandle)_servo, PhidgetUtilities::AttachHandler, NULL);
+    CPhidget_set_OnDetach_Handler((CPhidgetHandle)_servo, PhidgetUtilities::DetachHandler, NULL);
+    CPhidget_set_OnError_Handler((CPhidgetHandle)_servo, PhidgetUtilities::ErrorHandler, NULL);
 
     //Registers a callback that will run when the motor position is changed.
     //Requires the handle for the Phidget, the function that will be called, and an arbitrary pointer that will be supplied to the callback function (may be NULL).
-    CPhidgetAdvancedServo_set_OnPositionChange_Handler(_servo, PositionChangeHandler, NULL);
+    CPhidgetAdvancedServo_set_OnPositionChange_Handler(_servo, PhidgetUtilities::PositionChangeHandler, NULL);
 
     //open the device for connections
     CPhidget_open((CPhidgetHandle)_servo, -1);
@@ -38,7 +51,7 @@ ServoDriver::ServoDriver()
     }
 
     //Display the properties of the attached device
-    display_properties(_servo);
+    PhidgetUtilities::display_properties(_servo);
 
     //read event data
     printf("Reading.....\n");
