@@ -33,12 +33,17 @@ SET(CMAKEQT_SRCS
     CMakeQt.cpp
     servoDriver.cpp
     phidgetUtilities.cpp
+    RoyCalibration.cpp
+    RoyDriver.cpp
 )
 
 SET(CMAKEQT_HDRS
     CMakeQt.h
     servoDriver.hpp
     phidgetUtilities.hpp
+    royCalibration.hpp
+    RoyDriver.hpp
+    JointPositions.hpp
 )
 
 #Put here QRC files to be Rcc-ed
@@ -65,6 +70,6 @@ QT4_ADD_RESOURCES(CMAKEQT_RCC_SRCS ${CMAKEQT_RCC})
 QT4_WRAP_CPP(CMAKEQT_MOC_SRCS ${CMAKEQT_HDRS})
 
 
-ADD_EXECUTABLE(cmakeqt ${CMAKEQT_SRCS} ${CMAKEQT_MOC_SRCS} ${CMAKEQT_UIS_H} ${CMAKEQT_RCC_SRCS} ${QT_INCLUDE_DIRS} )
+ADD_EXECUTABLE(cmakeqt ${CMAKEQT_SRCS} ${CMAKEQT_MOC_SRCS} ${CMAKEQT_UIS_H} ${CMAKEQT_RCC_SRCS} ${QT_INCLUDE_DIRS} ${CMAKEQT_HDRS} )
 TARGET_LINK_LIBRARIES(cmakeqt ${CMAKEQT_LIBS} phidget21 )
 

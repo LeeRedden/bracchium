@@ -1,15 +1,15 @@
 
 #include <iostream>
 #include "servoDriver.hpp"
+#include "phidgetUtilities.hpp"
 
-ServoDriver::ServoDriver(float scaleMaxAndMin)
+ServoDriver::ServoDriver()
     : _servo (0)
     , _numberOfServos(8)
 {
     int result;
     double curr_pos;
     const char *err;
-    double minAccel, maxVel;
 
     //Declare an advanced servo handle
     //_servo = 0;
@@ -43,17 +43,27 @@ ServoDriver::ServoDriver(float scaleMaxAndMin)
     //read event data
     printf("Reading.....\n");
 
-    //This example assumes servo motor is attached to index 0
-
-    //Set up some initial acceleration and velocity values
-    CPhidgetAdvancedServo_getAccelerationMin(_servo, 0, &minAccel);
-    CPhidgetAdvancedServo_setAcceleration(_servo, 0, minAccel*2);
-    CPhidgetAdvancedServo_getVelocityMax(_servo, 0, &maxVel);
-    CPhidgetAdvancedServo_setVelocityLimit(_servo, 0, maxVel/2);
-
     //display current motor position
-    if(CPhidgetAdvancedServo_getPosition(_servo, 0, &curr_pos) == EPHIDGET_OK)
+    if(CPhidgetAdvancedServo_getPosition(_servo, 0, &curr_pos) == EPHIDGET_OK){
         printf("Motor: 0 > Current Position: %f\n", curr_pos);
+    }
+}
+
+void ServoDriver::setScaleMaxAndMin( float scaleMaxAndMin_ )
+{
+    //Set up some initial acceleration and velocity values
+    std::cout << "setting max and min scales to " << scaleMaxAndMin_ << std::endl;
+    if( scaleMaxAndMin_ != 0 )
+    {
+        double minAccel, maxVel;
+        for( int ii = 0; ii < _numberOfServos; ++ii )
+        {
+            CPhidgetAdvancedServo_getAccelerationMin(_servo, ii, &minAccel);
+            CPhidgetAdvancedServo_setAcceleration(_servo, ii, minAccel*scaleMaxAndMin_);
+            CPhidgetAdvancedServo_getVelocityMax(_servo, ii, &maxVel);
+            CPhidgetAdvancedServo_setVelocityLimit(_servo, ii, maxVel/scaleMaxAndMin_);
+        }
+    }
 
 }
 
@@ -68,7 +78,7 @@ void ServoDriver::EngageIndividual( int servoNumber_, int state_ ){
     CPhidgetAdvancedServo_setEngaged(_servo, servoNumber_, state_);
 }
 
-void ServoDriver::SetServo( int servoNumber_, double position_ ){
+void ServoDriver::SetServoPosition( int servoNumber_, double position_ ){
     CPhidgetAdvancedServo_setPosition( _servo, servoNumber_, position_ );
 }
 
@@ -84,7 +94,6 @@ double ServoDriver::GetCurrent( int servoNumber_ )
     double current = 0;
     CPhidgetAdvancedServo_getCurrent( _servo, servoNumber_, &current );
     return current;
-
 }
 
 void ServoDriver::SetServoRange( int servoNumber_, double min_, double max_ )

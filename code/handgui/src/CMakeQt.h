@@ -2,7 +2,8 @@
 #define CMAKEQT_H
 
 #include "ui_CMakeQt.h"
-#include "servoDriver.hpp"
+#include "RoyDriver.hpp"
+//#include "servoDriver.hpp"
 
 #include <QtGui>
 #include <QSlider>
@@ -17,14 +18,15 @@ public:
 
 private:
     Ui::CMakeQt m_ui;
-    ServoDriver _sd;
+    RoyDriver* _rd;
+
     std::vector< QSlider* > _sliders;
     std::vector< QLCDNumber* > _commanded;
     std::vector< QLCDNumber* > _current;
 
 private slots:
     void sliderMoved();
-    void closeButton();
+    void motionButton();
     void pauseButton();
     void resumeButton();
 
