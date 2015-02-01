@@ -53,9 +53,9 @@ CMakeQt::CMakeQt(QWidget *parent)
     // horizontal slider
     for( int ii = 0; ii < _rd->getNumberOfServos(); ++ii )
     {
-        _sliders[ii]->setRange(0,1);
+        _sliders[ii]->setRange(0,1000);
         // center the cursor
-        _sliders[ii]->setSliderPosition(0.5);
+        _sliders[ii]->setSliderPosition(500);
         _commanded[ii]->display(0.5);
         // set connection
         connect( _sliders[ii], SIGNAL(sliderMoved(int)), this, SLOT(sliderMoved()) );
@@ -66,8 +66,8 @@ void CMakeQt::sliderMoved()
 {
     for( int ii = 0; ii < _rd->getNumberOfServos(); ++ii )
     {
-        _rd->SetFingerPosition( static_cast<finger>(ii), _sliders[ii]->value() );
-        _commanded[ii]->display( _sliders[ii]->value() );
+        _rd->SetFingerPosition( static_cast<finger>(ii), (double)_sliders[ii]->value()/1000 );
+        _commanded[ii]->display( _sliders[ii]->value()/1000 );
         _current[ii]->display( _rd->GetCurrentFinger( static_cast<finger>(ii) ) );
     }
 }

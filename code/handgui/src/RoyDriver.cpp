@@ -1,5 +1,6 @@
 
 #include "RoyDriver.hpp"
+#include <iostream>
 
 RoyDriver::RoyDriver()
 {
@@ -13,13 +14,13 @@ RoyDriver::RoyDriver()
     this->EngageAll();
 }
 
-void RoyDriver::SetFingerPosition(finger finger_, double position_)
+void RoyDriver::SetFingerPosition( finger finger_, double position_)
 {
     fingerCalibration cal = returnCalibration( finger_ );
-    SetServoPosition( cal.servo, returnFingerMapping(finger_,position_) );
+    this->SetServoPosition( cal.servo, returnFingerMapping(finger_,position_) );
 }
 
-double RoyDriver::GetCurrentFinger(finger finger_ )
+double RoyDriver::GetCurrentFinger( finger finger_ )
 {
     fingerCalibration cal = returnCalibration( finger_ );
     return this->GetCurrent( cal.servo );

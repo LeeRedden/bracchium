@@ -1,5 +1,6 @@
 #include "royCalibration.hpp"
-#include <stdlib.h>     /* abs */
+#include <math.h>     /* abs */
+#include <iostream>
 
 fingerCalibration returnCalibration( finger finger_ )
 {
@@ -78,10 +79,10 @@ int returnFingerMapping( finger finger_, double position_ ) // position ranges f
     if(  (position_ >= 0.5 && fc.direction) || //value is between center and max
          (position_ <= 0.5 && !fc.direction) )
     {
-        return (fc.max - fc.center)*abs(position_-0.5) + fc.center;
+        return (fc.max - fc.center)*fabs(position_-0.5) + fc.center;
     }
     else
     {
-        return (fc.min - fc.center)*abs(position_-0.5) + fc.center;
+        return (fc.min - fc.center)*fabs(position_-0.5) + fc.center;
     }
 }
