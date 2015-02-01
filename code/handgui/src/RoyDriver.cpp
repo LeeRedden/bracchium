@@ -1,3 +1,16 @@
+//-*- c++ -*-------------------------------------------------------------------
+#ifdef __GNUC__
+#pragma implementation "RoyDriver.hpp"
+#endif
+//
+// Class: RoyDriver
+// Author: Lee Redden
+// Email: leeredden@gmail.com
+// Created: 31 Jan 2015
+// Modifications:
+// 20150131 LeeR Initial Version
+//
+//-----------------------------------------------------------------------------
 
 #include "RoyDriver.hpp"
 #include <iostream>

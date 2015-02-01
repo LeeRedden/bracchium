@@ -2,10 +2,8 @@
 #include <phidget21.h>
 
 #include "boost/foreach.hpp"
-//#include "servoDriver.hpp"
-//#include "royCalibration.hpp"
 #include "RoyDriver.hpp"
-#include "JointPositions.hpp"
+#include "MotionPaths.hpp"
 
 CMakeQt::CMakeQt(QWidget *parent)
     : QDialog(parent)
