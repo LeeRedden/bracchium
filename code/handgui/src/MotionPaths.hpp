@@ -34,12 +34,19 @@ pose generatePose( double millisecond_, double p0, double p1, double p2, double 
 std::vector<pose> returnPosition( std::string positionName_ )
 {
     std::vector<pose> poses;
-    if( positionName_ == "bird" )
+    if( positionName_ == "theBird" )
     {
         //                     0           1       2      3     4        5         6            7
         //  enum finger { BottomWrist, TopWrist, Pinky, Ring, Middle, Pointer, ThumbPivot, ThumbFinger };
         //                         0,    1,   2,   3,   4,   5,    6,    7
-        poses.push_back( generatePose( 100,  0,    0,   1,   1,  -1,   1,    0,  0.25 )  );
+        poses.push_back( generatePose( 200,  0,    0,   1,   1,   1,   1,    0,  0 )  );
+
+        for( int ii = 0; ii < 180; ii = ii + 1 ){
+            poses.push_back( generatePose( 15, 0,    0,   1,   1,   cos(ii*PI/180),   1,    0.5*cos(ii*PI/180)-0.5,  0.5*cos(ii*PI/180)-0.5 )  );
+        }
+        for( int ii = 180; ii < 360; ii = ii + 1 ){
+            poses.push_back( generatePose( 10, 0,    0,   1,   1,   cos(ii*PI/180),   1,    0.5*cos(ii*PI/180)-0.5,  0.5*cos(ii*PI/180)-0.5 )  );
+        }
     }
     else if( positionName_ == "rock" )
     {
