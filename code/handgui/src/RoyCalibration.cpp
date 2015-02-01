@@ -1,4 +1,4 @@
-#include "royCalibration.hpp"
+#include "RoyCalibration.hpp"
 #include <math.h>     /* abs */
 #include <iostream>
 

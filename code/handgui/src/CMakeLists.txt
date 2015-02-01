@@ -31,17 +31,17 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 SET(CMAKEQT_SRCS
     main.cpp
     CMakeQt.cpp
-    servoDriver.cpp
-    phidgetUtilities.cpp
+    ServoDriver.cpp
+    PhidgetUtilities.cpp
     RoyCalibration.cpp
     RoyDriver.cpp
 )
 
 SET(CMAKEQT_HDRS
     CMakeQt.h
-    servoDriver.hpp
-    phidgetUtilities.hpp
-    royCalibration.hpp
+    ServoDriver.hpp
+    PhidgetUtilities.hpp
+    RoyCalibration.hpp
     RoyDriver.hpp
     JointPositions.hpp
 )

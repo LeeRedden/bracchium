@@ -1,9 +1,8 @@
 #ifndef ROYDRIVER_HPP
 #define ROYDRIVER_HPP
 
-#include "royCalibration.hpp"
-#include "servoDriver.hpp"
-
+#include "RoyCalibration.hpp"
+#include "ServoDriver.hpp"
 
 
 class RoyDriver: public ServoDriver

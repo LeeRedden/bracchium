@@ -1,5 +1,5 @@
 
-#include "phidgetUtilities.hpp"
+#include "PhidgetUtilities.hpp"
 
 
 int CCONV AttachHandler(CPhidgetHandle ADVSERVO, void *userptr)

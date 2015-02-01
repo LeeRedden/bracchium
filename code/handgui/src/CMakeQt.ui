@@ -125,6 +125,13 @@
    <item row="7" column="3">
     <widget class="QLCDNumber" name="lcd7_1"/>
    </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="motionButton">
+     <property name="text">
+      <string>MOTION</string>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="1">
     <widget class="QPushButton" name="pauseButton">
      <property name="text">
@@ -142,21 +149,14 @@
    <item row="3" column="2">
     <widget class="QPushButton" name="rockoutButton">
      <property name="text">
-      <string>Rockout</string>
+      <string>Rock-Out</string>
      </property>
     </widget>
    </item>
    <item row="6" column="2">
     <widget class="QPushButton" name="hangtenButton">
      <property name="text">
-      <string>Hang 10</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QPushButton" name="motionButton">
-     <property name="text">
-      <string>MOTION</string>
+      <string>HangTen</string>
      </property>
     </widget>
    </item>

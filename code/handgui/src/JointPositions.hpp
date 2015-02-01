@@ -2,7 +2,7 @@
 #define JOINTPOSITIONS_HPP
 
 #include "string"
-#include "royCalibration.hpp"
+#include "RoyCalibration.hpp"
 #include <math.h>       /* sin */
 
 // This class will house the joint positions for different hand positions. Unclear how the will currently be executed

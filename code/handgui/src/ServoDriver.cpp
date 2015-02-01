@@ -1,7 +1,7 @@
 
 #include <iostream>
-#include "servoDriver.hpp"
-#include "phidgetUtilities.hpp"
+#include "ServoDriver.hpp"
+#include "PhidgetUtilities.hpp"
 
 ServoDriver::ServoDriver()
     : _servo (0)
