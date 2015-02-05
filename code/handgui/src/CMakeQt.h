@@ -33,6 +33,7 @@ private slots:
     void rockoutButton();
     void hangtenButton();
     void theBirdButton();
+    void davinciButton();
 
 };
 
