@@ -94,6 +94,27 @@ std::vector<pose> returnPosition( std::string positionName_ )
                              );
         }
     }
+    else if( positionName_ == "peace" )
+    {
+        // BottomWrist, TopWrist, Pinky, Ring, Middle, Pointer, ThumbPivot, ThumbFinger
+        poses.push_back( generatePose( 100, -0.75, 0.75, 1, 1, -1, -1, 1, 1) );
+    }
+    else if( positionName_ == "italian123" )
+    {
+        // BottomWrist, TopWrist, Pinky, Ring, Middle, Pointer, ThumbPivot, ThumbFinger
+
+        poses.push_back( generatePose( 1000, 0, 0, 1, 1, 1, 1, 1, 0) );
+        poses.push_back( generatePose( 1000, 0, 0, 1, 1, 1, 1, -1, -1) );
+        poses.push_back( generatePose( 1000, 0, 0, 1, 1, 1, -1, -1, -1) );
+        poses.push_back( generatePose( 1000, 0, 0, 1, 1, -1, -1, -1, -1) );
+        poses.push_back( generatePose( 1000, 0, 0, 1, -1, -1, -1, -1, -1) );
+        poses.push_back( generatePose( 1000, 0, 0, -1, -1, -1, -1, -1, -1) );
+
+        for( int ii = 0; ii < 720; ii = ii + 7 ){
+            poses.push_back( generatePose( 3, 0.5*sin(ii*PI/180), -0.5*sin(ii*PI/180),  -1, -1, -1, -1, -1, -1) );
+        }
+
+    }
     else{
         poses.push_back( generatePose( 100,  0,    0,   0,   0,  0,   0,    0,  0) );
     }

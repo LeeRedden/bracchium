@@ -19,6 +19,8 @@ CMakeQt::CMakeQt(QWidget *parent)
     connect( m_ui.hangtenButton, SIGNAL(pressed()), this, SLOT(hangtenButton()) );
     connect( m_ui.theBirdButton, SIGNAL(pressed()), this, SLOT(theBirdButton()) );
     connect( m_ui.davinciButton, SIGNAL(pressed()), this, SLOT(davinciButton()) );
+    connect( m_ui.peaceButton, SIGNAL(pressed()), this, SLOT(peaceButton()) );
+    connect( m_ui.italian123Button, SIGNAL(pressed()), this, SLOT(italian123Button()) );
 
     // populate sliders
     _sliders.push_back( m_ui.horizontalSlider0 );
@@ -88,6 +90,14 @@ void CMakeQt::doAction( std::string actionName_ )
         QCoreApplication::processEvents();
         usleep( poses[ii].millisecond*1000 );
     }
+}
+
+void CMakeQt::italian123Button() {
+    doAction( "italian123" );
+}
+
+void CMakeQt::peaceButton() {
+    doAction( "peace" );
 }
 
 void CMakeQt::davinciButton() {

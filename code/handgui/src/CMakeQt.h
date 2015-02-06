@@ -34,6 +34,8 @@ private slots:
     void hangtenButton();
     void theBirdButton();
     void davinciButton();
+    void peaceButton();
+    void italian123Button();
 
 };
 
