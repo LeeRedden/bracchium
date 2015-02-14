@@ -14,6 +14,7 @@ class CMakeQt : public QDialog
 
 public:
     CMakeQt(QWidget *parent = 0);
+    ~CMakeQt();
 
 private:
     Ui::CMakeQt m_ui;
@@ -36,6 +37,7 @@ private slots:
     void davinciButton();
     void peaceButton();
     void italian123Button();
+    void testButton();
 
 };
 

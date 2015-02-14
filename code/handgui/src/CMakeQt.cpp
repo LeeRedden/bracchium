@@ -21,6 +21,7 @@ CMakeQt::CMakeQt(QWidget *parent)
     connect( m_ui.davinciButton, SIGNAL(pressed()), this, SLOT(davinciButton()) );
     connect( m_ui.peaceButton, SIGNAL(pressed()), this, SLOT(peaceButton()) );
     connect( m_ui.italian123Button, SIGNAL(pressed()), this, SLOT(italian123Button()) );
+    connect( m_ui.testButton, SIGNAL(pressed()), this, SLOT(testButton()) );
 
     // populate sliders
     _sliders.push_back( m_ui.horizontalSlider0 );
@@ -65,6 +66,10 @@ CMakeQt::CMakeQt(QWidget *parent)
         connect( _sliders[ii], SIGNAL(sliderMoved(int)), this, SLOT(sliderMoved()) );
     }
 }
+CMakeQt::~CMakeQt()
+{
+    delete _rd;
+}
 
 void CMakeQt::sliderMoved()
 {
@@ -79,7 +84,7 @@ void CMakeQt::sliderMoved()
 // **************ACTIONS*******************
 void CMakeQt::doAction( std::string actionName_ )
 {
-    std::vector<pose> poses = returnPosition( actionName_ );
+    std::vector<pose> poses = returnPositions( actionName_ );
     for( int ii = 0; ii < poses.size(); ++ii )
     {
         _rd->SetFingerPositions( poses[ii].positions );
@@ -90,6 +95,10 @@ void CMakeQt::doAction( std::string actionName_ )
         QCoreApplication::processEvents();
         usleep( poses[ii].millisecond*1000 );
     }
+}
+
+void CMakeQt::testButton() {
+    doAction( "test" );
 }
 
 void CMakeQt::italian123Button() {

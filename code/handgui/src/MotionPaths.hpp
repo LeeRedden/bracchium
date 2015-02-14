@@ -13,7 +13,7 @@
 struct pose
 {
     double millisecond;
-    double positions[8];
+    std::array<double,8> positions;
 };
 
 pose generatePose( double millisecond_, double p0, double p1, double p2, double p3, double p4, double p5, double p6, double p7 )
@@ -31,7 +31,7 @@ pose generatePose( double millisecond_, double p0, double p1, double p2, double 
     return newPose;
 }
 
-std::vector<pose> returnPosition( std::string positionName_ )
+std::vector<pose> returnPositions( std::string positionName_ )
 {
     std::vector<pose> poses;
     if( positionName_ == "theBird" )
@@ -114,6 +114,10 @@ std::vector<pose> returnPosition( std::string positionName_ )
             poses.push_back( generatePose( 3, 0.5*sin(ii*PI/180), -0.5*sin(ii*PI/180),  -1, -1, -1, -1, -1, -1) );
         }
 
+    }
+    else if( positionName_ == "test" )
+    {
+        poses.push_back( generatePose( 1000, 0, 0, 1, 1, 1, 0.4, 1, 1) );
     }
     else{
         poses.push_back( generatePose( 100,  0,    0,   0,   0,  0,   0,    0,  0) );
