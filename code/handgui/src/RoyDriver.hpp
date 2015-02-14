@@ -22,17 +22,19 @@
 
 #include "RoyCalibration.hpp"
 #include "ServoDriver.hpp"
+#include <array>
 
 class RoyDriver: public ServoDriver
 {
 public:
     RoyDriver();
+    ~RoyDriver();
 
     //! Sets all of the finger positions at once with a single vector
     /*!
    \param positions_ finger positions where order is dictated by the enum finger in RoyCalibration.hpp
    */
-    void SetFingerPositions( double positions_[8] );
+    void SetFingerPositions( std::array<double,8> positions_ );
 
     //! Set an individual finger position
     /*!
@@ -52,6 +54,8 @@ public:
 private:
     int _numberOfServos;
     CPhidgetAdvancedServoHandle _servo;
+
+    bool CheckPositionLimits( std::array<double,8> &positions_ );
 };
 
 #endif // ROYDRIVER_HPP

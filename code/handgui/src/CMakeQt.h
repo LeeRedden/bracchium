@@ -3,7 +3,6 @@
 
 #include "ui_CMakeQt.h"
 #include "RoyDriver.hpp"
-//#include "servoDriver.hpp"
 
 #include <QtGui>
 #include <QSlider>
@@ -15,6 +14,7 @@ class CMakeQt : public QDialog
 
 public:
     CMakeQt(QWidget *parent = 0);
+    ~CMakeQt();
 
 private:
     Ui::CMakeQt m_ui;
@@ -24,6 +24,8 @@ private:
     std::vector< QLCDNumber* > _commanded;
     std::vector< QLCDNumber* > _current;
 
+    void doAction( std::string actionName_ );
+
 private slots:
     void sliderMoved();
     void motionButton();
@@ -31,6 +33,11 @@ private slots:
     void resumeButton();
     void rockoutButton();
     void hangtenButton();
+    void theBirdButton();
+    void davinciButton();
+    void peaceButton();
+    void italian123Button();
+    void testButton();
 
 };
 

@@ -17,6 +17,11 @@ CMakeQt::CMakeQt(QWidget *parent)
     connect( m_ui.resumeButton, SIGNAL(pressed()), this, SLOT(resumeButton()) );
     connect( m_ui.rockoutButton, SIGNAL(pressed()), this, SLOT(rockoutButton()) );
     connect( m_ui.hangtenButton, SIGNAL(pressed()), this, SLOT(hangtenButton()) );
+    connect( m_ui.theBirdButton, SIGNAL(pressed()), this, SLOT(theBirdButton()) );
+    connect( m_ui.davinciButton, SIGNAL(pressed()), this, SLOT(davinciButton()) );
+    connect( m_ui.peaceButton, SIGNAL(pressed()), this, SLOT(peaceButton()) );
+    connect( m_ui.italian123Button, SIGNAL(pressed()), this, SLOT(italian123Button()) );
+    connect( m_ui.testButton, SIGNAL(pressed()), this, SLOT(testButton()) );
 
     // populate sliders
     _sliders.push_back( m_ui.horizontalSlider0 );
@@ -61,6 +66,10 @@ CMakeQt::CMakeQt(QWidget *parent)
         connect( _sliders[ii], SIGNAL(sliderMoved(int)), this, SLOT(sliderMoved()) );
     }
 }
+CMakeQt::~CMakeQt()
+{
+    delete _rd;
+}
 
 void CMakeQt::sliderMoved()
 {
@@ -72,31 +81,51 @@ void CMakeQt::sliderMoved()
     }
 }
 
-void CMakeQt::hangtenButton() {
-    std::vector<pose> poses = returnPosition( "hang10" );
+// **************ACTIONS*******************
+void CMakeQt::doAction( std::string actionName_ )
+{
+    std::vector<pose> poses = returnPositions( actionName_ );
     for( int ii = 0; ii < poses.size(); ++ii )
     {
         _rd->SetFingerPositions( poses[ii].positions );
+        for( int jj = 0; jj < 8; ++jj ) {
+            _commanded[jj]->display( poses[ii].positions[jj] );
+            _sliders[jj]->setSliderPosition( 1000*poses[ii].positions[jj] );
+        }
+        QCoreApplication::processEvents();
         usleep( poses[ii].millisecond*1000 );
     }
+}
+
+void CMakeQt::testButton() {
+    doAction( "test" );
+}
+
+void CMakeQt::italian123Button() {
+    doAction( "italian123" );
+}
+
+void CMakeQt::peaceButton() {
+    doAction( "peace" );
+}
+
+void CMakeQt::davinciButton() {
+    doAction( "davinci" );
+}
+
+void CMakeQt::hangtenButton() {
+    doAction( "hang10" );
 }
 
 void CMakeQt::rockoutButton() {
-    std::vector<pose> poses = returnPosition( "rock" );
-    for( int ii = 0; ii < poses.size(); ++ii )
-    {
-        _rd->SetFingerPositions( poses[ii].positions );
-        usleep( poses[ii].millisecond*1000 );
-    }
+    doAction( "rock" );
 }
 
 void CMakeQt::motionButton() {
-    std::vector<pose> poses = returnPosition( "motion" );
-    for( int ii = 0; ii < poses.size(); ++ii )
-    {
-        _rd->SetFingerPositions( poses[ii].positions );
-        usleep( poses[ii].millisecond*1000 );
-    }
+    doAction( "motion" );
+}
+void CMakeQt::theBirdButton() {
+    doAction( "theBird" );
 }
 
 void CMakeQt::pauseButton(){

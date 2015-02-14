@@ -12,6 +12,7 @@
 //
 //-----------------------------------------------------------------------------
 
+#include <array>
 #include "RoyDriver.hpp"
 #include <iostream>
 
@@ -26,9 +27,26 @@ RoyDriver::RoyDriver()
     }
     this->EngageAll();
 }
+RoyDriver::~RoyDriver(){
+    this->EngageAll(0);
+}
 
-void RoyDriver::SetFingerPositions( double positions_[8] )
+bool RoyDriver::CheckPositionLimits( std::array<double,8> &positions_ )
 {
+    // colision with pointer finger
+    // check if thumb is in far enough
+    if( positions_[Pointer] > 0.5 && (positions_[ThumbPivot]/2 + positions_[ThumbFinger] > 0.5) )
+    {
+        positions_[ThumbFinger] = 0.5 - positions_[ThumbPivot]/2; // set thumb finger
+        return true;
+    }
+    return false;
+}
+
+void RoyDriver::SetFingerPositions( std::array<double,8> positions_ )
+{
+    CheckPositionLimits( positions_ );
+
     for( int ii = 0; ii < 8; ++ii )
     {
         this->SetFingerPosition( static_cast<finger>(ii), positions_[ii] );
