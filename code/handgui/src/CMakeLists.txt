@@ -35,6 +35,7 @@ SET(CMAKEQT_SRCS
     PhidgetUtilities.cpp
     RoyCalibration.cpp
     RoyDriver.cpp
+    MotionPaths.cpp
 )
 
 SET(CMAKEQT_HDRS
@@ -44,6 +45,7 @@ SET(CMAKEQT_HDRS
     RoyCalibration.hpp
     RoyDriver.hpp
     MotionPaths.hpp
+    SignLanguage.hpp
 )
 
 #Put here QRC files to be Rcc-ed

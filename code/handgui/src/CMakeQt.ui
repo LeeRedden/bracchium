@@ -193,7 +193,7 @@
      <property name="title">
       <string>Enter the alphabet</string>
      </property>
-     <widget class="QPushButton" name="abcButton">
+     <widget class="QPushButton" name="signButton">
       <property name="geometry">
        <rect>
         <x>160</x>
@@ -206,7 +206,7 @@
        <string>SignLanguage</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="abcInput">
+     <widget class="QLineEdit" name="signInput">
       <property name="geometry">
        <rect>
         <x>0</x>
