@@ -13,9 +13,35 @@ std::array<double,8> singleLetterPosition( char letter_ )
     std::array<double,8> pose;
     switch( letter_ )
     {
-    case 'a': pose = {{0,0,1,1,1,1,0,0}}; break;
-    case 'b': pose = {{0,0,-1,-1,-1,-1,1,1}}; break;
-    case 'c': pose = {{0,0,0.5,0.5,0.5,0.5,-1,0.5}}; break;
+    case 'a': pose = {{-0.6,0.6,1,1,1,1,0,0}}; break;
+    case 'b': pose = {{-0.6,0.6,-1,-1,-1,-1,1,1}}; break;
+    case 'c': pose = {{-0.6,0.6,0.5,0.5,0.5,0.5,-1,0.5}}; break;
+    case 'd': pose = {{-0.6,0.6,1,1,1,-1,1,1}}; break;
+    case 'e': pose = {{-0.6,0.6,0.5,0.5,0.5,0.5,1,1}}; break;
+    case 'f': pose = {{-0.6,0.6,-1,-1,-1,0.6,1,0.1}}; break;
+    case 'g': pose = {{0.2,-0.2,1,1,1,-1,1,-1}}; break;
+    case 'h': pose = {{0.2,-0.2,1,1,-1,-1,1,-1}}; break;
+    case 'i': pose = {{-0.6,0.6,-1,1,1,1,1,1}}; break;
+    case 'j': pose = {{-0.4,0.4,-1,1,1,1,1,1}}; break; // more work on j
+    case 'k': pose = {{-0.6,0.6,1,1,0.5,-1,1,1}}; break;
+    case 'l': pose = {{-0.6,0.6,1,1,1,-1,-1,-1}}; break;
+    case 'm': pose = {{0.5,0.5,1,0.5,0.5,0.5,1,1}}; break;
+    case 'n': pose = {{0.5,0.5,1,1,0.5,0.5,1,1}}; break;
+    case 'o': pose = {{-0.6,0.6,0.5,0.5,0.5,0.5,1,1}}; break;
+    case 'p': pose = {{0.2,-0.2,1,1,0.5,-1,1,0.5}}; break;
+
+
+    case 'r': pose = {{-0.6,0.6,1,1,-1,0,0,0}}; break;
+    case 's': pose = {{-0.6,0.6,1,1,1,1,1,1}}; break;
+
+
+    case 'u': pose = {{-0.6,0.6,1,1,-1,-1,1,1}}; break;
+    case 'v': pose = {{-0.6,0.6,1,1,0.2,-1,1,1}}; break;
+    case 'w': pose = {{-0.6,0.6,1,-1,-1,-1,1,1}}; break;
+    case 'x': pose = {{-0.6,0.6,1,1,1,0.5,1,1}}; break;
+    case 'y': pose = {{-0.6,0.6,-1,1,1,1,-1,-1}}; break;
+    case 'z': pose = {{0.2,-0.2,1,1,1,-1,1,1}}; break; // more work on z
+
     default:
         pose = {{0,0,0,0,0,0,0,0}};
         break;

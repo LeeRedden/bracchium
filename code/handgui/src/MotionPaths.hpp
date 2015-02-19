@@ -7,7 +7,7 @@
 #include <array>
 #include <vector>
 
-// This class will house the joint positions for different hand positions. Unclear how the will currently be executed
+// This class will house the joint positions for different hand positions.
 
 #define PI 3.14159265
 
