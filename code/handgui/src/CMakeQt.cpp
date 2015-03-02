@@ -4,6 +4,8 @@
 #include "boost/foreach.hpp"
 #include "RoyDriver.hpp"
 #include "MotionPaths.hpp"
+#include "SignLanguage.hpp"
+
 
 CMakeQt::CMakeQt(QWidget *parent)
     : QDialog(parent)
@@ -22,6 +24,8 @@ CMakeQt::CMakeQt(QWidget *parent)
     connect( m_ui.peaceButton, SIGNAL(pressed()), this, SLOT(peaceButton()) );
     connect( m_ui.italian123Button, SIGNAL(pressed()), this, SLOT(italian123Button()) );
     connect( m_ui.testButton, SIGNAL(pressed()), this, SLOT(testButton()) );
+
+    connect( m_ui.signButton, SIGNAL(pressed()), this, SLOT(signLanguageButton()) );
 
     // populate sliders
     _sliders.push_back( m_ui.horizontalSlider0 );
@@ -82,10 +86,10 @@ void CMakeQt::sliderMoved()
 }
 
 // **************ACTIONS*******************
-void CMakeQt::doAction( std::string actionName_ )
+void CMakeQt::executeMotion( std::vector<pose> poses )
 {
-    std::vector<pose> poses = returnPositions( actionName_ );
-    for( int ii = 0; ii < poses.size(); ++ii )
+    //std::vector<pose> poses = returnPositions( actionName_ );
+    for( uint ii = 0; ii < poses.size(); ++ii )
     {
         _rd->SetFingerPositions( poses[ii].positions );
         for( int jj = 0; jj < 8; ++jj ) {
@@ -98,34 +102,38 @@ void CMakeQt::doAction( std::string actionName_ )
 }
 
 void CMakeQt::testButton() {
-    doAction( "test" );
+    executeMotion( returnPositions("test") );
 }
 
 void CMakeQt::italian123Button() {
-    doAction( "italian123" );
+    executeMotion( returnPositions("italian123") );
 }
 
 void CMakeQt::peaceButton() {
-    doAction( "peace" );
+    executeMotion( returnPositions("peace") );
 }
 
 void CMakeQt::davinciButton() {
-    doAction( "davinci" );
+    executeMotion( returnPositions("davinci") );
 }
 
 void CMakeQt::hangtenButton() {
-    doAction( "hang10" );
+    executeMotion( returnPositions("hang10") );
 }
 
 void CMakeQt::rockoutButton() {
-    doAction( "rock" );
+    executeMotion( returnPositions("rock") );
 }
 
 void CMakeQt::motionButton() {
-    doAction( "motion" );
+    executeMotion( returnPositions("motion") );
 }
 void CMakeQt::theBirdButton() {
-    doAction( "theBird" );
+    executeMotion( returnPositions("theBird") );
+}
+
+void CMakeQt::signLanguageButton() {
+    executeMotion( returnSignLanguagePositions( m_ui.signInput->text().toLower().toStdString(), 1 ) );
 }
 
 void CMakeQt::pauseButton(){

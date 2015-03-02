@@ -191,28 +191,28 @@
    <item row="5" column="1" rowspan="2">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Enter the alphabet</string>
+      <string>Enter something to sign</string>
      </property>
-     <widget class="QPushButton" name="abcButton">
+     <widget class="QPushButton" name="signButton">
       <property name="geometry">
        <rect>
         <x>160</x>
         <y>20</y>
-        <width>101</width>
-        <height>27</height>
+        <width>111</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>SignLanguage</string>
+       <string>Sign Language</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="abcInput">
+     <widget class="QLineEdit" name="signInput">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>20</y>
-        <width>151</width>
-        <height>27</height>
+        <width>161</width>
+        <height>41</height>
        </rect>
       </property>
      </widget>

@@ -3,6 +3,7 @@
 
 #include "ui_CMakeQt.h"
 #include "RoyDriver.hpp"
+#include "MotionPaths.hpp"
 
 #include <QtGui>
 #include <QSlider>
@@ -24,8 +25,6 @@ private:
     std::vector< QLCDNumber* > _commanded;
     std::vector< QLCDNumber* > _current;
 
-    void doAction( std::string actionName_ );
-
 private slots:
     void sliderMoved();
     void motionButton();
@@ -39,6 +38,9 @@ private slots:
     void italian123Button();
     void testButton();
 
+    void signLanguageButton();
+
+    void executeMotion( std::vector<pose> poses_ );
 };
 
 #endif // CMAKEQT_H
